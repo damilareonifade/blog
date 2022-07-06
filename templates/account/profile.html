@@ -1,0 +1,41 @@
+{% extends "../base/base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+{% include "../base/nav-main.html" %}
+<div class="container">
+    <section class="jumbotron text-center bg-white">
+        <div class="container">
+            <h1>User Dashboard</h1>
+            <p class="lead text-muted">Something short and leading about the collection below—its contents, the
+                creator,
+                etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <p>
+                <a href="logout" class="btn btn-primary my-2">Logout</a>
+            </p>
+
+        </div>
+    </section>
+        <div class="py-5">
+          <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4">
+              <a class="text-dark" href="{{ post.get_absolute_url }}">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
+                  <div class="card-body">
+                    <h2 style="font-size:18px;font-weight:bold">{{post.title|truncatechars:50}}</h2>
+                    <p class="card-text">{{post.excerpt|truncatechars:50}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <small class="text-muted">9 mins</small>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+</div>
+{% include "../base/footer.html" %}
+{% endblock %}
